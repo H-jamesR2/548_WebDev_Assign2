@@ -306,7 +306,44 @@ Array.prototype.indexOf_ = function (searchElement, startIndex) {
  console.log("indexOf (expected):", indexOfarray1.indexOf(2, -3))
 */
 
-// Push
+/* Push */
+/**
+ * The push method appends values to an array; push is intentionally generic. 
+ * This method can be used with call() or apply() on objects resembling arrays. 
+ * The push method relies on a length property to determine where to start inserting the given values. 
+ * If the length property cannot be converted into a number, the index used is 0. 
+ * This includes the possibility of length being nonexistent, in which case length will also be created.
+ * 
+ * Although strings are native, Array-like objects, 
+ * they are not suitable in applications of this method, as strings are immutable.  
+ * Similarly for the native, Array-like object arguments.
+ */
+Array.prototype.push_ = function(...elementN) {
+    let elementIndex = 0
+    const length = this.length
+    for (let i = length; i < length + elementN.length; ++i) {
+        this[i] = elementN[elementIndex]
+        ++elementIndex
+    }
+    return this.length
+}
+// Test for Push
+/* 
+ const pushArray1 = ['pigs', 'goats', 'sheep']
+ const pushArray2 = ['pigs', 'goats', 'sheep']
+ const push_count1 = pushArray1.push_('cows')
+ const push_count2 = pushArray2.push('cows')
+ console.log(push_count1, " | ", push_count2) // expected output: 4 | 4
+ // expected output: Arrays ["pigs", "goats", "sheep", "cows"] | ["pigs", "goats", "sheep", "cows"]
+ console.log(pushArray1, " | ", pushArray2)
+
+ pushArray1.push_('chickens', 'cats', 'dogs')
+ pushArray2.push('chickens', 'cats', 'dogs')
+ // expected output: Arrays ["pigs", "goats", "sheep", "cows", "chickens", "cats", "dogs"] | 
+ // ["pigs", "goats", "sheep", "cows", "chickens", "cats", "dogs"]
+ console.log(pushArray1, " | ", pushArray2)
+*/
+
 
 // lastIndexOf
 
