@@ -438,4 +438,42 @@ Object.keys_ = function(obj) {
  console.log(Object.keys_({})); 
 */
  
-// Object.values()
+/* Object.values() */
+/**
+ * 
+ */
+Object.values_ = function(obj) {
+    let values = []
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            values.push(obj[key])
+        }
+    }
+    return values
+}
+// Test for Object.values()
+/*
+ const object1 = {
+     a: 'somestring',
+     b: 42,
+     c: false
+ };
+ console.log(Object.values(object1)); // expected output: Array ['somestring', 42, false]
+ console.log(Object.values_(object1));
+ // simple array
+ const arr = ['a', 'b', 'c'];
+ console.log(Object.values(arr));     // console: ['a', 'b', 'c']
+ console.log(Object.values_(arr));
+
+ console.log("")
+ // array-like object
+ const obj = { 0: 'a', 1: 'b', 2: 'c' };
+ console.log(Object.values(obj));     // console: ['a', 'b', 'c']
+ console.log(Object.values_(obj));
+ // array-like object with random key ordering
+ const anObj = { 100: 'a', 2: 'b', 7: 'c' };
+ console.log(Object.values(anObj));   // console: ['b', 'c', 'a']
+ console.log(Object.values_(anObj));
+ console.log(Object.values({}));      // []
+ console.log(Object.values_({}));
+*/
