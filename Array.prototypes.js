@@ -58,7 +58,42 @@ Array.prototype.map_ = function(callback) {
  console.log("map (expected):", mapArray1.map(element => element + 3))
 */
 
-// Filter
+/* Filter */
+/**
+ * filter() calls a provided callbackFn function 
+ * once for each element in an array, and constructs 
+ * a new array of all the values for which 
+ * allbackFn returns a value that coerces to true. 
+ * callbackFn is invoked only for indexes of the array which have assigned values; 
+ * it is not invoked for indexes which have been deleted or 
+ * which have never been assigned values. 
+ * Array elements which do not pass the callbackFn test are skipped, 
+ * and are not included in the new array.
+ * 
+ * callbackFn is invoked with three arguments:
+ * { the value of the element, the index of the element, the Array object being traversed }
+ */
+Array.prototype.filter_ = function(callback) {
+    let filtered = []
+    for (let i = 0; i < this.length; ++i) {
+        if (!(i in this)) {
+            continue
+        }
+        else if (callback(this[i], i, this)) {
+            filtered.push(this[i])
+        }
+    }
+    return filtered
+}
+// Test for Filter
+/*
+ const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present']
+ const nums = [1,2,3,4,0, undefined]
+ console.log("filter_", words.filter_(word => word.length > 6))
+ console.log("filter (expected):", words.filter(word => word.length > 6))
+ console.log("filter_:", nums.filter_(num => num < 4))
+ console.log("filter (expected):", nums.filter(num => num < 4))
+*/
 
 // Some
 
