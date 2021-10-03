@@ -217,7 +217,49 @@ Array.prototype.reduce_ = function(callback, initialValue) {
  console.log("reduce (expected):", [      ].reduce(getMax))
 */
 
-// Includes
+/* Includes */
+/**
+ * The includes() method determines whether an array includes a certain value 
+ * among its entries, returning true or false as appropriate.
+ */
+Array.prototype.includes_ = function(searchElement, startIndex) {
+    let start = 0;
+    if (startIndex >= this.length) {
+        return false
+    } 
+    else if (startIndex < 0) {
+        adjust_pos = this.length + startIndex
+        if (adjust_pos > 0) {
+            start = adjust_pos
+        }
+    } else {
+        start = startIndex
+    }
+
+    for(let i = start; i < this.length; ++i) {
+        if (this[i] == searchElement || 
+            (Number.isNaN(this[i]) && Number.isNaN(searchElement))) {
+            return true
+        }
+    }
+    return false
+}
+// Test for includes
+/* 
+ console.log("includes_:", [1, 2, 3].includes(2))           // true
+ console.log("includes: (expected)", [1, 2, 3].includes(2))         
+ console.log("includes_:", [1, 2, 3].includes(4))          // false
+ console.log("includes: (expected)", [1, 2, 3].includes(4))
+ console.log("includes_:", [1, 2, 3].includes(3, 3))       // false
+ console.log("includes: (expected)", [1, 2, 3].includes(3, 3))
+ console.log("includes_:", [1, 2, 3].includes(3, -1))      // true
+ console.log("includes: (expected)", [1, 2, 3].includes(3, -1))
+ console.log("")
+ console.log("includes_:", [1, 2, NaN].includes(NaN))      // true
+ console.log("includes: (expected)", [1, 2, NaN].includes(NaN))
+ console.log("includes_:", ["1", "2", "3"].includes(3))    // false
+ console.log("includes: (expected)", ["1", "2", "3"].includes(3))
+*/
 
 // indexOf
 
