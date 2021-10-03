@@ -245,19 +245,19 @@ Array.prototype.includes_ = function(searchElement, startIndex) {
     return false
 }
 // Test for includes
-/* 
- console.log("includes_:", [1, 2, 3].includes(2))           // true
+/*
+ console.log("includes_:", [1, 2, 3].includes_(2))           // true
  console.log("includes: (expected)", [1, 2, 3].includes(2))         
- console.log("includes_:", [1, 2, 3].includes(4))          // false
+ console.log("includes_:", [1, 2, 3].includes_(4))          // false
  console.log("includes: (expected)", [1, 2, 3].includes(4))
- console.log("includes_:", [1, 2, 3].includes(3, 3))       // false
+ console.log("includes_:", [1, 2, 3].includes_(3, 3))       // false
  console.log("includes: (expected)", [1, 2, 3].includes(3, 3))
- console.log("includes_:", [1, 2, 3].includes(3, -1))      // true
+ console.log("includes_:", [1, 2, 3].includes_(3, -1))      // true
  console.log("includes: (expected)", [1, 2, 3].includes(3, -1))
  console.log("")
- console.log("includes_:", [1, 2, NaN].includes(NaN))      // true
+ console.log("includes_:", [1, 2, NaN].includes_(NaN))      // true
  console.log("includes: (expected)", [1, 2, NaN].includes(NaN))
- console.log("includes_:", ["1", "2", "3"].includes(3))    // false
+ console.log("includes_:", ["1", "2", "3"].includes_(3))    // false
  console.log("includes: (expected)", ["1", "2", "3"].includes(3))
 */
 
