@@ -126,7 +126,34 @@ Array.prototype.some_ = function(callback) {
  console.log("some (expected):", someArray1.some(element => element < 2))
 */
 
-// Every
+/* Every */
+/**
+ * The every method executes the provided callbackFn function once 
+ * for each element present in the array until it finds the one 
+ * where callbackFn returns a falsy value. 
+ * If such an element is found, the every method immediately returns false. 
+ * Otherwise, if callbackFn returns a truthy value for all elements, every returns true.
+ * 
+ * callbackFn is invoked with three arguments: 
+ * { the value of the element, the index of the element, and the Array object being traversed }
+ */
+Array.prototype.every_ = function(callback) {
+    for (let i = 0; i < this.length; ++i) {
+        //if at least 1 value in array does not match condition, return false;
+        if(!(callback(this[i], i, this))) { 
+            return false
+        }
+    }
+    return true
+}
+// Test for every
+/*
+ const everyArray1 = [12, 54, 18, 130, 44]
+ console.log("every_:", everyArray1.every_(element => element > 11))            //check if contains every value greater than 11
+ console.log("every (expected):", everyArray1.every(element => element > 11))
+ console.log("every_:", everyArray1.every_(element => element > 13))            //check if contains every value greater than 13
+ console.log("every (expected):", everyArray1.every(element => element > 13))
+*/
 
 // Reduce
 
