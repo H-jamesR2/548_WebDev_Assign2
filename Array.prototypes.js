@@ -95,7 +95,36 @@ Array.prototype.filter_ = function(callback) {
  console.log("filter (expected):", nums.filter(num => num < 4))
 */
 
-// Some
+/* Some */
+/**
+ * some() executes the callbackFn function once for each element 
+ * present in the array until it finds the one where 
+ * callbackFn returns a truthy value (a value that becomes true when converted to a Boolean). 
+ * If such an element is found, some() immediately returns true. 
+ * Otherwise, some() returns false. 
+ * callbackFn is invoked only for indexes of the array with assigned values. 
+ * It is not invoked for indexes which have been deleted 
+ * or which have never been assigned values.
+ * 
+ * callbackFn is invoked with three arguments: 
+ * { the value of the element, the index of the element, and the Array object being traversed }
+ */
+Array.prototype.some_ = function(callback) {
+    for (let i = 0; i < this.length; ++i) {
+        if (callback(this[i], i, this)) {
+            return true
+        }
+    }
+    return false
+}
+// Test for some
+/*
+ const someArray1 = [12, 5, 8, 3, 4]
+ console.log("some_:", someArray1.some_(element => element > 10))           //check if contains at least 1 value greater than 10
+ console.log("some (expected):", someArray1.some(element => element > 10))
+ console.log("some_:", someArray1.some_(element => element < 2))            //check if contains at least 1 value less than 2
+ console.log("some (expected):", someArray1.some(element => element < 2))
+*/
 
 // Every
 
