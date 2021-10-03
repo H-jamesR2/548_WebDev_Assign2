@@ -155,7 +155,67 @@ Array.prototype.every_ = function(callback) {
  console.log("every (expected):", everyArray1.every(element => element > 13))
 */
 
-// Reduce
+/* Reduce */
+/**
+ * callbackfn should be a function that takes four arguments.
+ * reduce calls the callback, as a function, once for each element 
+ * after the first element present in the array, in ascending order.
+ * 
+ * callbackfn is called with four arguments:
+ * { the previousValue (value from the previous call to callbackfn), the currentValue (value of the current element), 
+ * the currentIndex, and the object being traversed }
+ * 
+ * The first time that callback is called, the previousValue and currentValue can be one of two values:
+ * -- If an initialValue was supplied in the call to reduce, then previousValue will be equal to 
+ * initialValue and currentValue will be equal to the first value in the array.
+ * -- If no initialValue was supplied, then previousValue will be equal to 
+ * the first value in the array and currentValue will be equal to the second.
+ * 
+ * It is a TypeError if the array contains no elements and initialValue is not provided. <-- Base
+ */
+Array.prototype.reduce_ = function(callback, initialValue) {
+    // TypeError
+    if (this.length == 0 && initialValue == undefined) {
+        throw new Error(TypeError)
+    }
+    // Edge cases
+    else if (this.length == 1 && initialValue == undefined) {
+        return this[0]
+    }
+    else if (this.length == 0 && initialValue) {
+        return initialValue
+    }
+
+    // Most cases
+    let reducer = initialValue || this[0]
+    for (let i = (initialValue ? 0 : 1); i < this.length; ++i) {
+        if(!(i in this)) {
+            continue
+        }
+        temp = callback(reducer, this[i], i, this)
+        reducer = temp
+    }
+    return reducer
+}
+// Test for reduce
+/*
+ const getMax = (a,b) => Math.max(a,b);
+ console.log("reduce_:", [1, 100].reduce_(getMax, 50))          // 100
+ console.log("reduce (expected):", [1, 100].reduce(getMax, 50))
+
+ // callback is invoked once for element at index 1
+ console.log("reduce_:", [1, 100].reduce_(getMax))              // 100
+ console.log("reduce (expected):", [1, 100].reduce(getMax))
+
+ // callback is not invoked
+ console.log("reduce_:", [    50].reduce(getMax))               // 50
+ console.log("reduce (expected):", [    50].reduce(getMax))
+ console.log("reduce_:", [      ].reduce(getMax, 1))            // 1
+ console.log("reduce (expected):", [      ].reduce(getMax, 1))
+
+ console.log("reduce_:", [      ].reduce(getMax))               // TypeError
+ console.log("reduce (expected):", [      ].reduce(getMax))
+*/
 
 // Includes
 
