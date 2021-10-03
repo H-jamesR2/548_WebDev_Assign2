@@ -223,17 +223,19 @@ Array.prototype.reduce_ = function(callback, initialValue) {
  * among its entries, returning true or false as appropriate.
  */
 Array.prototype.includes_ = function(searchElement, startIndex) {
-    let start = 0;
-    if (startIndex >= this.length) {
-        return false
-    } 
-    else if (startIndex < 0) {
-        adjust_pos = this.length + startIndex
-        if (adjust_pos > 0) {
-            start = adjust_pos
+    let start = 0
+    if (startIndex) {
+        if (startIndex >= this.length) {
+            return false
+        } 
+        else if (startIndex < 0) {
+            adjust_pos = this.length + startIndex
+            if (adjust_pos > 0) {
+                start = adjust_pos
+            }
+        } else {
+            start = startIndex
         }
-    } else {
-        start = startIndex
     }
 
     for(let i = start; i < this.length; ++i) {
@@ -247,21 +249,62 @@ Array.prototype.includes_ = function(searchElement, startIndex) {
 // Test for includes
 /*
  console.log("includes_:", [1, 2, 3].includes_(2))           // true
- console.log("includes: (expected)", [1, 2, 3].includes(2))         
+ console.log("includes: (expected):", [1, 2, 3].includes(2))         
  console.log("includes_:", [1, 2, 3].includes_(4))          // false
- console.log("includes: (expected)", [1, 2, 3].includes(4))
+ console.log("includes: (expected):", [1, 2, 3].includes(4))
  console.log("includes_:", [1, 2, 3].includes_(3, 3))       // false
- console.log("includes: (expected)", [1, 2, 3].includes(3, 3))
+ console.log("includes: (expected):", [1, 2, 3].includes(3, 3))
  console.log("includes_:", [1, 2, 3].includes_(3, -1))      // true
- console.log("includes: (expected)", [1, 2, 3].includes(3, -1))
+ console.log("includes: (expected):", [1, 2, 3].includes(3, -1))
  console.log("")
  console.log("includes_:", [1, 2, NaN].includes_(NaN))      // true
- console.log("includes: (expected)", [1, 2, NaN].includes(NaN))
+ console.log("includes: (expected):", [1, 2, NaN].includes(NaN))
  console.log("includes_:", ["1", "2", "3"].includes_(3))    // false
- console.log("includes: (expected)", ["1", "2", "3"].includes(3))
+ console.log("includes: (expected):", ["1", "2", "3"].includes(3))
 */
 
-// indexOf
+/* indexOf */
+/**
+ * indexOf() compares searchElement to elements of the Array using strict equality 
+ * (the same method used by the === or triple-equals operator).
+ */
+Array.prototype.indexOf_ = function (searchElement, startIndex) {
+    let start = 0
+    if (startIndex) {
+        if (startIndex >= this.length) {
+            return -1
+        }
+        else if (startIndex < 0) {
+            adjust_pos = this.length + startIndex
+            if (adjust_pos > 0) {
+                start = adjust_pos
+            }
+        } else {
+            start = startIndex
+        }
+    }
+    for (let i = start; i < this.length; ++i) {
+        if (this[i] === searchElement) {
+            return i
+        }
+    }
+    return -1
+}
+// Test for indexOf
+/*
+ const indexOfarray1 = [2, 9, 9]
+ console.log("indexOf_:", indexOfarray1.indexOf_(2))                 // 0
+ console.log("indexOf (expected):", indexOfarray1.indexOf(2))    
+ console.log("indexOf_:", indexOfarray1.indexOf_(7))                 // -1
+ console.log("indexOf (expected):", indexOfarray1.indexOf(7))
+ 
+ console.log("indexOf_:", indexOfarray1.indexOf_(9, 2))              // 2
+ console.log("indexOf (expected):", indexOfarray1.indexOf(9, 2))
+ console.log("indexOf_:", indexOfarray1.indexOf_(2, -1))             // -1
+ console.log("indexOf (expected):", indexOfarray1.indexOf(2, -1))
+ console.log("indexOf_:", indexOfarray1.indexOf_(2, -3))             // 0
+ console.log("indexOf (expected):", indexOfarray1.indexOf(2, -3))
+*/
 
 // Push
 
