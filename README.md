@@ -3,7 +3,7 @@
 ## Assignment:
 
 * Consider the following JavaScript methods:
-{ forEach, Map, Filter, Some, Every, Reduce, Includes, indexOf, Push, lastIndexOf, Object.keys(), Object.values() }
+  * { forEach, Map, Filter, Some, Every, Reduce, Includes, indexOf, Push, lastIndexOf, Object.keys(), Object.values() }
 
 * forEach()
   Without using the native “Array.prototype.forEach” method of JavaScript, compose a function titled “myEach” that will take in an 
