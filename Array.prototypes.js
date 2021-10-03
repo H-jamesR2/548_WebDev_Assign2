@@ -42,7 +42,7 @@ Array.prototype.forEach_ = function(callback) {
  * thisArgOptional => Value to use as this when executing callbackFn.
 **/
 Array.prototype.map_ = function(callback) {
-    var map = []
+    let map = []
     for (let i = 0; i < this.length; ++i) {
         if (!(i in this)) {
             continue
@@ -50,7 +50,7 @@ Array.prototype.map_ = function(callback) {
         map[i] = callback(this[i], i, this)
     }
     return map
-};
+}
 // Test for Map
 /*
  const mapArray1 = [6,7,8,9]
