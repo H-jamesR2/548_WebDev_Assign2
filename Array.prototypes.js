@@ -344,8 +344,59 @@ Array.prototype.push_ = function(...elementN) {
  console.log(pushArray1, " | ", pushArray2)
 */
 
+/* lastIndexOf */
+/**
+ * lastIndexOf compares searchElement to elements of the Array using strict equality 
+ * (the same method used by the ===, or triple-equals, operator).
+ * 
+ * searchElement => Element to locate in the array.
+ * fromIndex (Optional) => The index at which to start searching backwards. 
+ * Defaults to the array's length minus one (arr.length - 1), 
+ * i.e. the whole array will be searched. 
+ * If the index is greater than or equal to the length of the array, 
+ * the whole array will be searched. 
+ * If negative, it is taken as the offset from the end of the array. 
+ * Note that even when the index is negative, the array is still searched from back to front. 
+ * If the calculated index is less than 0, -1 is returned, i.e. the array will not be searched.
+ */
+Array.prototype.lastIndexOf_ = function(searchElement, startIndex) {
+    let start = this.length - 1
+    if (startIndex) {
+        if (startIndex < this.length) {
+            start = startIndex
+        } else if (startIndex < 0) {
+            adjust_pos = this.length + startIndex
+            if (adjust_pos < 0) {
+                return -1
+            }
+        }
+    }
 
-// lastIndexOf
+    for (let i = start; i >= 0; --i) {
+        if (this[i] == searchElement) {
+            return i
+        }
+    }
+    return -1
+}
+// Test for lastIndexOf
+/* 
+ const lastIndexOfarray1 = [2, 5, 9, 2];
+ console.log("lastIndexOf_:", lastIndexOfarray1.lastIndexOf_(2))                // 3
+ console.log("lastIndexOf (expected):", lastIndexOfarray1.lastIndexOf(2))
+ console.log("lastIndexOf_:", lastIndexOfarray1.lastIndexOf_(7))                // -1
+ console.log("lastIndexOf (expected):", lastIndexOfarray1.lastIndexOf(7))
+ console.log("lastIndexOf_:", lastIndexOfarray1.lastIndexOf_(2, 3))             // 3
+ console.log("lastIndexOf (expected):", lastIndexOfarray1.lastIndexOf(2, 3))
+ console.log("")
+ console.log("lastIndexOf_:", lastIndexOfarray1.lastIndexOf_(2, 2))             // 0
+ console.log("lastIndexOf (expected):", lastIndexOfarray1.lastIndexOf(2, 2))
+ console.log("lastIndexOf_:", lastIndexOfarray1.lastIndexOf_(2, -2))            // 0
+ console.log("lastIndexOf (expected):", lastIndexOfarray1.lastIndexOf(2, -2))
+ console.log("lastIndexOf_:", lastIndexOfarray1.lastIndexOf_(2, -1))            // 3
+ console.log("lastIndexOf (expected):", lastIndexOfarray1.lastIndexOf(2, -1)) 
+*/
+
 
 // Object.keys()
 
